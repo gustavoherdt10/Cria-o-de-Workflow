@@ -1,7 +1,0 @@
-/meu-projeto
-  ├── .github/
-  │    ├── workflows/
-  │         ├── ci-cd-pipeline.yml  <-- Arquivo do GitHub Actions
-  ├── package.json
-  ├── index.js
-  ├── ...
