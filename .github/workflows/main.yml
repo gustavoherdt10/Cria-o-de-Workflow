@@ -1,4 +1,4 @@
-name: Currency Converter CI
+name: Currency Converter CI/CD
 
 on:
   push:
@@ -15,19 +15,42 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-  test:
+      - name: Simulating Build
+        run: echo "Building project..."
+
+  lint:
     runs-on: ubuntu-latest
     needs: build
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
-      
-      - name: Run Tests (Simulated)
+
+      - name: Run Lint (Simulado)
+        run: echo "Checking JavaScript syntax..."
+
+  test:
+    runs-on: ubuntu-latest
+    needs: lint
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Run Tests (Simulado)
         run: echo "Running tests..."
 
-  deploy:
+  performance_test:
     runs-on: ubuntu-latest
     needs: test
     steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Run Performance Test
+        run: echo "Measuring script execution time..."
+  
+  deploy:
+    runs-on: ubuntu-latest
+    needs: performance_test
+    steps:
       - name: Simulating Deployment
-        run: echo "Deployment Successful!"
+        run: echo "Deploying to production..."
